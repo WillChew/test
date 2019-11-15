@@ -11,5 +11,5 @@ import UIKit
 class StoryCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var headlineLabel: UILabel!
-    
+      @IBOutlet weak var articleImageView: UIImageView!
 }

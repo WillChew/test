@@ -14,6 +14,7 @@ class MainScreenCollectionViewController: UICollectionViewController {
     
     var articleArray = [NewsArticle]()
     
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +44,7 @@ class MainScreenCollectionViewController: UICollectionViewController {
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 10
+        return 1
     }
     
     
@@ -63,6 +64,24 @@ class MainScreenCollectionViewController: UICollectionViewController {
             cell.headlineLabel.text = "Loading articles"
         } else  {
             cell.headlineLabel.text = articleArray[indexPath.row].title
+            cell.articleImageView.image = articleArray[indexPath.row].headlineImage
+//
+//            let url = URL(string: articleArray[indexPath.row].url)
+//            if url != nil {
+//                DispatchQueue.global().async {
+//                    let data = try? Data(contentsOf: url!)
+//                    DispatchQueue.main.async {
+//                        if data != nil {
+//                            cell.articleImageView.image = UIImage(data: data!)
+//                        } else {
+////                            cell.articleImageView.isHidden = true
+//                        }
+//                        collectionView.reloadData()
+//                    }
+//                }
+//            }
+            
+            
         }
         
         
@@ -135,6 +154,8 @@ extension MainScreenCollectionViewController {
         var title: String
         var url: String
         var id: String
+        var pubDate: String
+        var headlineImage: UIImage
     }
     
     func networkcall() {
@@ -150,20 +171,29 @@ extension MainScreenCollectionViewController {
             guard let data = data, let jsonDict = try! JSONSerialization.jsonObject(with: data, options: []) as? Dictionary<String,Any?>, let jsonDict2 = jsonDict["contentitems"] as? Array<Dictionary<String,Any?>> else { return }
             
             for article in jsonDict2 {
-                guard let articleTitle = article["title"] as? String, let articleURL = article["url"] as? String, let id = article["id"] as? String else { return }
-                let newsArticle = NewsArticle(title: articleTitle, url: articleURL, id: id)
+                guard let articleTitle = article["title"] as? String,
+                    let articleURL = article["url"] as? String,
+                    let id = article["id"] as? String,
+                    let pubDate = article["pubdate"] as? String,
+                    let headlineImage = article["headlineimage"] as? String
+                    else { return }
+                    
+                
+                let pictureURL = URL(string: headlineImage)!
+                let imageData = try? Data(contentsOf: pictureURL)
+                
+                
+                let newsArticle = NewsArticle(title: articleTitle, url: articleURL, id: id, pubDate: pubDate, headlineImage: UIImage(data: imageData!)!)
                 self?.articleArray.append(newsArticle)
             }
             
             DispatchQueue.main.async {
                 self?.collectionView.reloadData()
+                
             }
             
         }.resume()
         session.finishTasksAndInvalidate()
     }
-    
-    
-    
-    
+
 }

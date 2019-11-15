@@ -16,31 +16,45 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2bT-3q-adM">
-                            <size key="itemSize" width="400" height="250"/>
+                            <size key="itemSize" width="400" height="300"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="StoryCell" id="sbq-ej-MLn" customClass="StoryCollectionViewCell" customModule="cbc" customModuleProvider="target">
-                                <rect key="frame" x="7" y="0.0" width="400" height="250"/>
+                                <rect key="frame" x="7" y="0.0" width="400" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="iVk-0I-RQ1">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="250"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jEz-HJ-mfB">
-                                            <rect key="frame" x="8" y="126" width="384" height="85"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dsp-a4-alZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="203"/>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jEz-HJ-mfB">
+                                            <rect key="frame" x="8" y="188" width="384" height="85"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="dsp-a4-alZ" firstAttribute="leading" secondItem="iVk-0I-RQ1" secondAttribute="leading" id="8RT-uf-bHq"/>
+                                        <constraint firstItem="jEz-HJ-mfB" firstAttribute="leading" secondItem="iVk-0I-RQ1" secondAttribute="leading" constant="8" id="SM6-EO-JxB"/>
+                                        <constraint firstAttribute="trailing" secondItem="jEz-HJ-mfB" secondAttribute="trailing" constant="8" id="dF9-hz-bGl"/>
+                                        <constraint firstItem="jEz-HJ-mfB" firstAttribute="top" secondItem="iVk-0I-RQ1" secondAttribute="top" constant="188" id="dO7-5q-EII"/>
+                                        <constraint firstAttribute="trailing" secondItem="dsp-a4-alZ" secondAttribute="trailing" id="ftV-LT-PFd"/>
+                                        <constraint firstAttribute="bottom" secondItem="jEz-HJ-mfB" secondAttribute="bottom" constant="27" id="g8P-9H-TNt"/>
+                                        <constraint firstAttribute="bottom" secondItem="dsp-a4-alZ" secondAttribute="bottom" constant="97" id="xBN-nI-wNy"/>
+                                        <constraint firstItem="dsp-a4-alZ" firstAttribute="top" secondItem="iVk-0I-RQ1" secondAttribute="top" id="zF8-wz-QA1"/>
+                                    </constraints>
                                 </collectionViewCellContentView>
-                                <size key="customSize" width="400" height="250"/>
+                                <size key="customSize" width="400" height="300"/>
                                 <connections>
+                                    <outlet property="articleImageView" destination="dsp-a4-alZ" id="NoB-jr-pAN"/>
                                     <outlet property="headlineLabel" destination="jEz-HJ-mfB" id="jpB-Vx-KKf"/>
                                 </connections>
                             </collectionViewCell>
