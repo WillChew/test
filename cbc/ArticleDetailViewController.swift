@@ -15,6 +15,7 @@ class ArticleDetailViewController: UIViewController {
     var id: String?
     var passedImage: UIImage?
     var passedArticle: NewsArticle?
+    var passedTitle: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,7 @@ class ArticleDetailViewController: UIViewController {
             getNewsInfo(of: id)
         }
         
+        storyTextView.isEditable = false
        
         
         // Do any additional setup after loading the view.
@@ -56,26 +58,34 @@ extension ArticleDetailViewController {
             guard let body = json["body"] as? String else { return }
             
             DispatchQueue.main.async {
-                let data = body.data(using: String.Encoding.unicode)!
+                
                 var attributedString: NSMutableAttributedString!
-                guard let attrStr = try? NSAttributedString(data: data, options: [NSAttributedString.DocumentReadingOptionKey.documentType : NSAttributedString.DocumentType.html], documentAttributes: nil) else { return }
+                 let textAttachment = NSTextAttachment()
+                 textAttachment.image = self.passedImage
+                let attrStrWithImage = NSAttributedString(attachment: textAttachment)
+                attributedString = NSMutableAttributedString()
                 
-                
-                attributedString = NSMutableAttributedString(attributedString: attrStr)
-                let textAttachment = NSTextAttachment()
-                textAttachment.image = self.passedImage
-                
+
                 let oldWidth = textAttachment.image!.size.width
                 let scale = oldWidth / (self.storyTextView.frame.size.width - 10)
                 textAttachment.image = UIImage(cgImage: textAttachment.image!.cgImage!, scale: scale, orientation: .up)
                 textAttachment.bounds = CGRect.init(x: 0, y: 0, width: textAttachment.image!.size.width, height: textAttachment.image!.size.height)
                 
+                let data = body.data(using: String.Encoding.unicode)!
+                
+                guard let attrBodyStr = try? NSAttributedString(data: data, options: [NSAttributedString.DocumentReadingOptionKey.documentType : NSAttributedString.DocumentType.html], documentAttributes: nil) else { return }
                 
                 
+                guard let titleStr = self.passedTitle else { return }
+                let fontAttribute = [NSAttributedString.Key.font: UIFont(name: "Kailasa", size: 22.0)! ]
+                let titleAttrStr = NSAttributedString(string: "\(titleStr) \n", attributes: fontAttribute)
                 
-                let attrStrWithImage = NSAttributedString(attachment: textAttachment)
-                
+                attributedString.append(titleAttrStr)
                 attributedString.append(attrStrWithImage)
+                attributedString.append(attrBodyStr)
+                
+                
+                
                 self.storyTextView.attributedText = attributedString
                 
                 

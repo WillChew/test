@@ -65,6 +65,7 @@ class MainScreenCollectionViewController: UICollectionViewController {
         } else  {
             cell.headlineLabel.text = articleArray[indexPath.row].title
             cell.articleImageView.image = articleArray[indexPath.row].headlineImage
+            
         }
         
         
@@ -83,6 +84,7 @@ class MainScreenCollectionViewController: UICollectionViewController {
         let detailVC = segue.destination as! ArticleDetailViewController
         detailVC.id = articleArray[indexPath.row].id
         detailVC.passedImage = articleArray[indexPath.row].headlineImage
+        detailVC.passedTitle = articleArray[indexPath.row].title
                 
         }
     }
