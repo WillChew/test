@@ -57,9 +57,31 @@ extension ArticleDetailViewController {
             
             DispatchQueue.main.async {
                 let data = body.data(using: String.Encoding.unicode)!
-                let attrStr = try? NSAttributedString(data: data, options: [NSAttributedString.DocumentReadingOptionKey.documentType : NSAttributedString.DocumentType.html], documentAttributes: nil)
+                var attributedString: NSMutableAttributedString!
+                guard let attrStr = try? NSAttributedString(data: data, options: [NSAttributedString.DocumentReadingOptionKey.documentType : NSAttributedString.DocumentType.html], documentAttributes: nil) else { return }
                 
-                self.storyTextView.attributedText = attrStr
+                
+                attributedString = NSMutableAttributedString(attributedString: attrStr)
+                let textAttachment = NSTextAttachment()
+                textAttachment.image = self.passedImage
+                
+                let oldWidth = textAttachment.image!.size.width
+                let scale = oldWidth / (self.storyTextView.frame.size.width - 10)
+                textAttachment.image = UIImage(cgImage: textAttachment.image!.cgImage!, scale: scale, orientation: .up)
+                textAttachment.bounds = CGRect.init(x: 0, y: 0, width: textAttachment.image!.size.width, height: textAttachment.image!.size.height)
+                
+                
+                
+                
+                let attrStrWithImage = NSAttributedString(attachment: textAttachment)
+                
+                attributedString.append(attrStrWithImage)
+                self.storyTextView.attributedText = attributedString
+                
+                
+                
+                
+//                self.storyTextView.attributedText = attrStr
             }
             
         }.resume()
