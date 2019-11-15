@@ -19,7 +19,7 @@ class MainScreenCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        networkcall()
+        getArticle()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -69,6 +69,22 @@ class MainScreenCollectionViewController: UICollectionViewController {
         
         
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+      if let cell = sender as? UICollectionViewCell,
+        let indexPath = self.collectionView.indexPath(for: cell) {
+        let detailVC = segue.destination as! ArticleDetailViewController
+        detailVC.id = articleArray[indexPath.row].id
+        detailVC.passedImage = articleArray[indexPath.row].headlineImage
+                
+        }
     }
     
     // MARK: UICollectionViewDelegate
@@ -135,7 +151,7 @@ extension MainScreenCollectionViewController {
     
 
     
-    func networkcall() {
+    func getArticle() {
         
         guard let url = URL(string: "https://www.cbc.ca/m/config/news/samples/cbcnews.json") else {
             fatalError("Error getting URL")
