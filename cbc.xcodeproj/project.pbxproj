@@ -14,6 +14,8 @@
 		213B1EB5237E158A00F27640 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 213B1EB3237E158A00F27640 /* LaunchScreen.storyboard */; };
 		213B1EBD237E173500F27640 /* MainScreenCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213B1EBC237E173500F27640 /* MainScreenCollectionViewController.swift */; };
 		213B1EBF237E185700F27640 /* StoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213B1EBE237E185700F27640 /* StoryCollectionViewCell.swift */; };
+		218B3095237E7FE500E79C7C /* ArticleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218B3094237E7FE500E79C7C /* ArticleDetailViewController.swift */; };
+		218B3097237E808800E79C7C /* NewsArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218B3096237E808800E79C7C /* NewsArticle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		213B1EB6237E158A00F27640 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		213B1EBC237E173500F27640 /* MainScreenCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenCollectionViewController.swift; sourceTree = "<group>"; };
 		213B1EBE237E185700F27640 /* StoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		218B3094237E7FE500E79C7C /* ArticleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailViewController.swift; sourceTree = "<group>"; };
+		218B3096237E808800E79C7C /* NewsArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsArticle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,8 @@
 				213B1EAA237E158700F27640 /* SceneDelegate.swift */,
 				213B1EAE237E158700F27640 /* Main.storyboard */,
 				213B1EBC237E173500F27640 /* MainScreenCollectionViewController.swift */,
+				218B3096237E808800E79C7C /* NewsArticle.swift */,
+				218B3094237E7FE500E79C7C /* ArticleDetailViewController.swift */,
 				213B1EBE237E185700F27640 /* StoryCollectionViewCell.swift */,
 				213B1EB1237E158A00F27640 /* Assets.xcassets */,
 				213B1EB3237E158A00F27640 /* LaunchScreen.storyboard */,
@@ -142,9 +148,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				213B1EBF237E185700F27640 /* StoryCollectionViewCell.swift in Sources */,
+				218B3097237E808800E79C7C /* NewsArticle.swift in Sources */,
 				213B1EA9237E158700F27640 /* AppDelegate.swift in Sources */,
 				213B1EBD237E173500F27640 /* MainScreenCollectionViewController.swift in Sources */,
 				213B1EAB237E158700F27640 /* SceneDelegate.swift in Sources */,
+				218B3095237E7FE500E79C7C /* ArticleDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

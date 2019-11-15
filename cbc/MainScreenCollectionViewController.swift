@@ -65,23 +65,6 @@ class MainScreenCollectionViewController: UICollectionViewController {
         } else  {
             cell.headlineLabel.text = articleArray[indexPath.row].title
             cell.articleImageView.image = articleArray[indexPath.row].headlineImage
-//
-//            let url = URL(string: articleArray[indexPath.row].url)
-//            if url != nil {
-//                DispatchQueue.global().async {
-//                    let data = try? Data(contentsOf: url!)
-//                    DispatchQueue.main.async {
-//                        if data != nil {
-//                            cell.articleImageView.image = UIImage(data: data!)
-//                        } else {
-////                            cell.articleImageView.isHidden = true
-//                        }
-//                        collectionView.reloadData()
-//                    }
-//                }
-//            }
-            
-            
         }
         
         
@@ -150,13 +133,7 @@ extension MainScreenCollectionViewController {
     //        case story = "story"
     //    }
     
-    struct NewsArticle {
-        var title: String
-        var url: String
-        var id: String
-        var pubDate: String
-        var headlineImage: UIImage
-    }
+
     
     func networkcall() {
         
