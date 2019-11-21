@@ -25,6 +25,7 @@ class ArticleDetailViewController: UIViewController {
         }
         
         storyTextView.isEditable = false
+        storyTextView.backgroundColor = .white
        
         
         // Do any additional setup after loading the view.
@@ -77,7 +78,7 @@ extension ArticleDetailViewController {
                 
                 
                 guard let titleStr = self.passedTitle else { return }
-                let fontAttribute = [NSAttributedString.Key.font: UIFont(name: "Kailasa", size: 22.0)! ]
+                let fontAttribute = [NSAttributedString.Key.font: UIFont(name: "Kailasa", size: 25.0)! ]
                 let titleAttrStr = NSAttributedString(string: "\(titleStr) \n", attributes: fontAttribute)
                 
                 attributedString.append(titleAttrStr)

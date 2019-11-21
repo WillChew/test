@@ -35,20 +35,19 @@
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jEz-HJ-mfB">
-                                            <rect key="frame" x="8" y="188" width="384" height="85"/>
+                                            <rect key="frame" x="0.0" y="211" width="400" height="24"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="dsp-a4-alZ" firstAttribute="leading" secondItem="iVk-0I-RQ1" secondAttribute="leading" id="8RT-uf-bHq"/>
-                                        <constraint firstItem="jEz-HJ-mfB" firstAttribute="leading" secondItem="iVk-0I-RQ1" secondAttribute="leading" constant="8" id="SM6-EO-JxB"/>
-                                        <constraint firstAttribute="trailing" secondItem="jEz-HJ-mfB" secondAttribute="trailing" constant="8" id="dF9-hz-bGl"/>
-                                        <constraint firstItem="jEz-HJ-mfB" firstAttribute="top" secondItem="iVk-0I-RQ1" secondAttribute="top" constant="188" id="dO7-5q-EII"/>
+                                        <constraint firstItem="jEz-HJ-mfB" firstAttribute="top" secondItem="dsp-a4-alZ" secondAttribute="bottom" constant="8" id="G10-D7-o4t"/>
+                                        <constraint firstAttribute="trailing" secondItem="jEz-HJ-mfB" secondAttribute="trailing" id="fV5-7M-VhG"/>
                                         <constraint firstAttribute="trailing" secondItem="dsp-a4-alZ" secondAttribute="trailing" id="ftV-LT-PFd"/>
-                                        <constraint firstAttribute="bottom" secondItem="jEz-HJ-mfB" secondAttribute="bottom" constant="27" id="g8P-9H-TNt"/>
+                                        <constraint firstItem="jEz-HJ-mfB" firstAttribute="leading" secondItem="iVk-0I-RQ1" secondAttribute="leading" id="jsi-J8-xO3"/>
                                         <constraint firstAttribute="bottom" secondItem="dsp-a4-alZ" secondAttribute="bottom" constant="97" id="xBN-nI-wNy"/>
                                         <constraint firstItem="dsp-a4-alZ" firstAttribute="top" secondItem="iVk-0I-RQ1" secondAttribute="top" id="zF8-wz-QA1"/>
                                     </constraints>
@@ -79,15 +78,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Gaj-eT-iqo">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Gaj-eT-iqo">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="19"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Gaj-eT-iqo" firstAttribute="top" secondItem="yvC-J1-Juc" secondAttribute="top" id="Lp9-qf-s9a"/>
                             <constraint firstItem="yvC-J1-Juc" firstAttribute="trailing" secondItem="Gaj-eT-iqo" secondAttribute="trailing" id="ZIw-sj-wBa"/>

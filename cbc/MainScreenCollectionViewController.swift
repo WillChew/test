@@ -13,6 +13,9 @@ private let reuseIdentifier = "Cell"
 class MainScreenCollectionViewController: UICollectionViewController {
     
     var articleArray = [NewsArticle]()
+    var width = CGFloat()
+    var height = CGFloat()
+    var startedLandscape: Bool?
     
   
     
@@ -21,6 +24,38 @@ class MainScreenCollectionViewController: UICollectionViewController {
         
         getArticle()
         
+        
+        
+
+        
+        
+        print(view.bounds.size.width)
+        
+        width = view.bounds.size.width
+        height = view.bounds.size.height
+         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        
+        if height > width {
+            print("portrait")
+            startedLandscape = false
+            width = (view.bounds.size.width - 20)
+            height = (view.bounds.size.height - 20) / 2.5
+            
+           
+            layout.itemSize = CGSize(width: width, height: height)
+          
+            
+        } else if width > height {
+            print("landscape")
+            startedLandscape = true
+            width = view.bounds.size.width
+            height = (view.bounds.size.height - 20)
+            
+            layout.itemSize = CGSize(width: width, height: height)
+                       
+            
+        }
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -28,6 +63,22 @@ class MainScreenCollectionViewController: UICollectionViewController {
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        guard let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout  else {
+            return
+        }
+        
+        if size.height > size.width {
+
+            layout.itemSize = CGSize(width: (size.width - 20), height: (size.height - 20) / 2.5)
+            
+            
+        } else if size.width > size.height {
+            layout.itemSize = CGSize(width: size.width, height: size.height)
+        }
     }
     
     /*
@@ -72,9 +123,21 @@ class MainScreenCollectionViewController: UICollectionViewController {
         return cell
     }
     
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+    func collectionView(_ collectionView: UICollectionView, layout
+    collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        if UIDevice.current.orientation.isLandscape{
+               return CGSize(width: width, height: height)
+                   
+               } else {
+                   return CGSize(width: width, height: height)
+                   
+               }
+        
+        
     }
+    
+   
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
