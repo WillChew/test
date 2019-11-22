@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="doW-nf-Vka">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="doW-nf-Vka">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -56,7 +56,7 @@
                                 <connections>
                                     <outlet property="articleImageView" destination="dsp-a4-alZ" id="NoB-jr-pAN"/>
                                     <outlet property="headlineLabel" destination="jEz-HJ-mfB" id="jpB-Vx-KKf"/>
-                                    <segue destination="dQx-dH-meJ" kind="show" identifier="DetailSegue" id="id5-hO-FMe"/>
+                                    <segue destination="YhT-15-if8" kind="show" identifier="DetailSegue" id="id5-hO-FMe"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -79,7 +79,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Gaj-eT-iqo">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="19"/>
@@ -88,21 +88,46 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Gaj-eT-iqo" firstAttribute="top" secondItem="yvC-J1-Juc" secondAttribute="top" id="Lp9-qf-s9a"/>
-                            <constraint firstItem="yvC-J1-Juc" firstAttribute="trailing" secondItem="Gaj-eT-iqo" secondAttribute="trailing" id="ZIw-sj-wBa"/>
-                            <constraint firstItem="Gaj-eT-iqo" firstAttribute="leading" secondItem="yvC-J1-Juc" secondAttribute="leading" id="mGV-Qf-DCm"/>
-                            <constraint firstItem="Gaj-eT-iqo" firstAttribute="bottom" secondItem="yvC-J1-Juc" secondAttribute="bottom" id="mqY-G7-3uI"/>
+                            <constraint firstItem="Gaj-eT-iqo" firstAttribute="leading" secondItem="yvC-J1-Juc" secondAttribute="leading" id="DGr-gN-YWs"/>
+                            <constraint firstItem="Gaj-eT-iqo" firstAttribute="centerX" secondItem="ezD-Tn-YAI" secondAttribute="centerX" id="Igc-PQ-0Or"/>
+                            <constraint firstItem="Gaj-eT-iqo" firstAttribute="top" secondItem="yvC-J1-Juc" secondAttribute="top" id="IjX-Rp-Zrf"/>
+                            <constraint firstItem="Gaj-eT-iqo" firstAttribute="bottom" secondItem="yvC-J1-Juc" secondAttribute="bottom" id="eyp-bH-Boh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yvC-J1-Juc"/>
                     </view>
-                    <navigationItem key="navigationItem" id="R9d-Ta-dGh"/>
+                    <navigationItem key="navigationItem" id="R9d-Ta-dGh">
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="NCc-Yu-lyd">
+                            <connections>
+                                <action selector="shareButtonPressed:" destination="dQx-dH-meJ" id="eye-z5-OIM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="storyTextView" destination="Gaj-eT-iqo" id="mbX-fv-z8I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="snR-ee-04w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="855.07246376811599" y="-79.017857142857139"/>
+            <point key="canvasLocation" x="1866.6666666666667" y="-79.017857142857139"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="OfV-J8-ang">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YhT-15-if8" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="m8K-S3-YMI"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hCc-F0-NmU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dQx-dH-meJ" kind="relationship" relationship="rootViewController" id="Ghd-X6-aIe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S17-T0-Yt3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="956.52173913043487" y="-79.017857142857139"/>
         </scene>
     </scenes>
 </document>

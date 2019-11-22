@@ -16,6 +16,7 @@ class ArticleDetailViewController: UIViewController {
     var passedImage: UIImage?
     var passedArticle: NewsArticle?
     var passedTitle: String?
+    var passedURL: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,21 +28,39 @@ class ArticleDetailViewController: UIViewController {
         storyTextView.isEditable = false
         storyTextView.backgroundColor = .white
        
-        
-        // Do any additional setup after loading the view.
     }
     
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    @IBAction func shareButtonPressed(_ sender: Any) {
+        
+        let shareOptionMenu = UIAlertController(title: nil, message: "Share on", preferredStyle: .actionSheet)
+        
+        let twitterOption = UIAlertAction(title: "Twitter", style: .default) { _ in
+            
+            let shareString = "https://twitter.com/intent/tweet?text=&url=\(self.passedURL!)"
+            let escapedShareString = shareString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+            
+            let url = URL(string: escapedShareString)
+
+            
+            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+            
+        }
+        
+        let fbOption = UIAlertAction(title: "Facebook", style: .default) { _ in
+            print("Sharing \(self.passedURL) via facebook")
+        }
+        
+        let cancelOption = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        shareOptionMenu.addAction(twitterOption)
+        shareOptionMenu.addAction(fbOption)
+        shareOptionMenu.addAction(cancelOption)
+        
+        self.present(shareOptionMenu, animated: true, completion: nil)
+    }
     
+
 }
 
 extension ArticleDetailViewController {
@@ -66,7 +85,6 @@ extension ArticleDetailViewController {
                 let attrStrWithImage = NSAttributedString(attachment: textAttachment)
                 attributedString = NSMutableAttributedString()
                 
-
                 let oldWidth = textAttachment.image!.size.width
                 let scale = oldWidth / (self.storyTextView.frame.size.width - 10)
                 textAttachment.image = UIImage(cgImage: textAttachment.image!.cgImage!, scale: scale, orientation: .up)
@@ -88,20 +106,13 @@ extension ArticleDetailViewController {
                 
                 
                 self.storyTextView.attributedText = attributedString
-                
-                
-                
-                
-//                self.storyTextView.attributedText = attrStr
+            
             }
             
         }.resume()
         session.finishTasksAndInvalidate()
         
-        
-        
-        
-        
+
         
     }
     

@@ -144,10 +144,12 @@ class MainScreenCollectionViewController: UICollectionViewController {
         
       if let cell = sender as? UICollectionViewCell,
         let indexPath = self.collectionView.indexPath(for: cell) {
-        let detailVC = segue.destination as! ArticleDetailViewController
+        let destinationNavVC = segue.destination as! UINavigationController
+        let detailVC = destinationNavVC.topViewController as! ArticleDetailViewController
         detailVC.id = articleArray[indexPath.row].id
         detailVC.passedImage = articleArray[indexPath.row].headlineImage
         detailVC.passedTitle = articleArray[indexPath.row].title
+        detailVC.passedURL = articleArray[indexPath.row].url
                 
         }
     }
