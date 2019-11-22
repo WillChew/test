@@ -48,8 +48,15 @@ class MainScreenCollectionViewController: UICollectionViewController {
             
             layout.itemSize = CGSize(width: width, height: height)
                        
-            
         }
+        
+       
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
+        collectionView.addSubview(refreshControl)
+        
+        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -59,6 +66,11 @@ class MainScreenCollectionViewController: UICollectionViewController {
         
         // Do any additional setup after loading the view.
     }
+    
+    @objc func refresh(sender: AnyObject) {
+               collectionView.reloadData()
+               refreshControl.endRefreshing()
+           }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
