@@ -14,12 +14,14 @@ class NewsArticle {
     var id: String
     var pubDate: String
     var headlineImage: UIImage
+    var flag: String
     
-    init(title: String, url: String, id: String, pubDate: String, headlineImage: UIImage) {
+    init(title: String, url: String, id: String, pubDate: String, headlineImage: UIImage, flag: String) {
         self.title = title
         self.url = url
         self.id = id
         self.pubDate = pubDate
         self.headlineImage = headlineImage
+        self.flag = flag
     }
 }

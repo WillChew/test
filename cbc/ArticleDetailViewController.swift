@@ -28,7 +28,7 @@ class ArticleDetailViewController: UIViewController {
         
         storyTextView.isEditable = false
         storyTextView.backgroundColor = .white
-       
+        
     }
     
     func shareOnFacebook() {
@@ -37,10 +37,10 @@ class ArticleDetailViewController: UIViewController {
         contentShare.contentURL = URL.init(string: passedURL)!
         contentShare.quote = "Check out this article!"
         ShareDialog(fromViewController: self, content: contentShare, delegate: self as? SharingDelegate).show()
-    
+        
     }
     
-   
+    
     
     @IBAction func dimissButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -57,7 +57,7 @@ class ArticleDetailViewController: UIViewController {
             let escapedShareString = shareString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
             
             let url = URL(string: escapedShareString)
-
+            
             
             UIApplication.shared.open(url!, options: [:], completionHandler: nil)
             
@@ -78,7 +78,7 @@ class ArticleDetailViewController: UIViewController {
         self.present(shareOptionMenu, animated: true, completion: nil)
     }
     
-
+    
 }
 
 extension ArticleDetailViewController {
@@ -98,8 +98,8 @@ extension ArticleDetailViewController {
             DispatchQueue.main.async {
                 
                 var attributedString: NSMutableAttributedString!
-                 let textAttachment = NSTextAttachment()
-                 textAttachment.image = self.passedImage
+                let textAttachment = NSTextAttachment()
+                textAttachment.image = self.passedImage
                 let attrStrWithImage = NSAttributedString(attachment: textAttachment)
                 attributedString = NSMutableAttributedString()
                 
@@ -110,12 +110,22 @@ extension ArticleDetailViewController {
                 
                 let data = body.data(using: String.Encoding.unicode)!
                 
-                guard let attrBodyStr = try? NSAttributedString(data: data, options: [NSAttributedString.DocumentReadingOptionKey.documentType : NSAttributedString.DocumentType.html], documentAttributes: nil) else { return }
+                
+                
+                guard let attrBodyStr = try? NSMutableAttributedString(data: data, options: [NSAttributedString.DocumentReadingOptionKey.documentType : NSAttributedString.DocumentType.html], documentAttributes: nil) else { return }
+                
+                
+                
+                attrBodyStr.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Kailasa", size: 17.0)!, range: NSRange(location:0,length:attrBodyStr.length))
+                
+                
+                
                 
                 
                 guard let titleStr = self.passedTitle else { return }
-                let fontAttribute = [NSAttributedString.Key.font: UIFont(name: "Kailasa", size: 25.0)! ]
+                let fontAttribute = [NSAttributedString.Key.font: UIFont(name: "Kailasa", size: 27.0)! ]
                 let titleAttrStr = NSAttributedString(string: "\(titleStr) \n", attributes: fontAttribute)
+                
                 
                 attributedString.append(titleAttrStr)
                 attributedString.append(attrStrWithImage)
@@ -124,13 +134,13 @@ extension ArticleDetailViewController {
                 
                 
                 self.storyTextView.attributedText = attributedString
-            
+                
             }
             
         }.resume()
         session.finishTasksAndInvalidate()
         
-
+        
         
     }
     

@@ -18,17 +18,14 @@ class MainScreenCollectionViewController: UICollectionViewController {
     var startedLandscape: Bool?
     var refreshControl = UIRefreshControl()
     
-    
-  
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         getArticle()
-
+        
         width = view.bounds.size.width
         height = view.bounds.size.height
-         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         
         if height > width {
             
@@ -36,9 +33,9 @@ class MainScreenCollectionViewController: UICollectionViewController {
             width = (view.bounds.size.width - 20)
             height = (view.bounds.size.height - 20) / 2.5
             
-           
+            
             layout.itemSize = CGSize(width: width, height: height)
-          
+            
             
         } else if width > height {
             
@@ -47,10 +44,10 @@ class MainScreenCollectionViewController: UICollectionViewController {
             height = (view.bounds.size.height - 20)
             
             layout.itemSize = CGSize(width: width, height: height)
-                       
+            
         }
         
-       
+        
         
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
@@ -68,9 +65,10 @@ class MainScreenCollectionViewController: UICollectionViewController {
     }
     
     @objc func refresh(sender: AnyObject) {
-               collectionView.reloadData()
-               refreshControl.endRefreshing()
-           }
+        
+        collectionView.reloadData()
+        refreshControl.endRefreshing()
+    }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
@@ -79,7 +77,7 @@ class MainScreenCollectionViewController: UICollectionViewController {
         }
         
         if size.height > size.width {
-
+            
             layout.itemSize = CGSize(width: (size.width - 20), height: (size.height - 20) / 2.5)
             
             
@@ -120,9 +118,14 @@ class MainScreenCollectionViewController: UICollectionViewController {
         
         if articleArray.count == 0 {
             cell.headlineLabel.text = "Loading articles"
+            cell.isUserInteractionEnabled = false
         } else  {
+            cell.isUserInteractionEnabled = true
             cell.headlineLabel.text = articleArray[indexPath.row].title
             cell.articleImageView.image = articleArray[indexPath.row].headlineImage
+            cell.articleFlagLabel.text = articleArray[indexPath.row].flag
+            cell.dateLabel.text = articleArray[indexPath.row].pubDate
+            
             
         }
         
@@ -131,33 +134,34 @@ class MainScreenCollectionViewController: UICollectionViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout
-    collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         if UIDevice.current.orientation.isLandscape{
-               return CGSize(width: width, height: height)
-                   
-               } else {
-                   return CGSize(width: width, height: height)
-                   
-               }
+            return CGSize(width: width, height: height)
+            
+        } else {
+            return CGSize(width: width, height: height)
+            
+        }
         
         
     }
     
-   
+    
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-      if let cell = sender as? UICollectionViewCell,
-        let indexPath = self.collectionView.indexPath(for: cell) {
-        let destinationNavVC = segue.destination as! UINavigationController
-        let detailVC = destinationNavVC.topViewController as! ArticleDetailViewController
-        detailVC.id = articleArray[indexPath.row].id
-        detailVC.passedImage = articleArray[indexPath.row].headlineImage
-        detailVC.passedTitle = articleArray[indexPath.row].title
-        detailVC.passedURL = articleArray[indexPath.row].url
-                
+        if let cell = sender as? UICollectionViewCell,
+            let indexPath = self.collectionView.indexPath(for: cell) {
+            let destinationNavVC = segue.destination as! UINavigationController
+            let detailVC = destinationNavVC.topViewController as! ArticleDetailViewController
+            destinationNavVC.modalPresentationStyle = .currentContext
+            detailVC.id = articleArray[indexPath.row].id
+            detailVC.passedImage = articleArray[indexPath.row].headlineImage
+            detailVC.passedTitle = articleArray[indexPath.row].title
+            detailVC.passedURL = articleArray[indexPath.row].url
+            
         }
     }
     
@@ -223,7 +227,7 @@ extension MainScreenCollectionViewController {
     //        case story = "story"
     //    }
     
-
+    
     
     func getArticle() {
         
@@ -242,15 +246,16 @@ extension MainScreenCollectionViewController {
                     let articleURL = article["url"] as? String,
                     let id = article["id"] as? String,
                     let pubDate = article["pubdate"] as? String,
-                    let headlineImage = article["headlineimage"] as? String
+                    let headlineImage = article["headlineimage"] as? String,
+                    let flag = article["flag"] as? String
                     else { return }
-                    
+                
                 
                 let pictureURL = URL(string: headlineImage)!
                 let imageData = try? Data(contentsOf: pictureURL)
                 
                 
-                let newsArticle = NewsArticle(title: articleTitle, url: articleURL, id: id, pubDate: pubDate, headlineImage: UIImage(data: imageData!)!)
+                let newsArticle = NewsArticle(title: articleTitle, url: articleURL, id: id, pubDate: pubDate, headlineImage: UIImage(data: imageData!)!, flag: flag)
                 self?.articleArray.append(newsArticle)
             }
             
@@ -262,5 +267,5 @@ extension MainScreenCollectionViewController {
         }.resume()
         session.finishTasksAndInvalidate()
     }
-
+    
 }
