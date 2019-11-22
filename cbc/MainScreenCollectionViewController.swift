@@ -16,6 +16,8 @@ class MainScreenCollectionViewController: UICollectionViewController {
     var width = CGFloat()
     var height = CGFloat()
     var startedLandscape: Bool?
+    var refreshControl = UIRefreshControl()
+    
     
   
     
@@ -23,20 +25,13 @@ class MainScreenCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         
         getArticle()
-        
-        
-        
 
-        
-        
-        print(view.bounds.size.width)
-        
         width = view.bounds.size.width
         height = view.bounds.size.height
          let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         
         if height > width {
-            print("portrait")
+            
             startedLandscape = false
             width = (view.bounds.size.width - 20)
             height = (view.bounds.size.height - 20) / 2.5
@@ -46,7 +41,7 @@ class MainScreenCollectionViewController: UICollectionViewController {
           
             
         } else if width > height {
-            print("landscape")
+            
             startedLandscape = true
             width = view.bounds.size.width
             height = (view.bounds.size.height - 20)

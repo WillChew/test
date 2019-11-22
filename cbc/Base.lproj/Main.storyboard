@@ -96,6 +96,11 @@
                         <viewLayoutGuide key="safeArea" id="yvC-J1-Juc"/>
                     </view>
                     <navigationItem key="navigationItem" id="R9d-Ta-dGh">
+                        <barButtonItem key="leftBarButtonItem" title="Dismiss" id="UXn-RR-LVB">
+                            <connections>
+                                <action selector="dimissButtonPressed:" destination="dQx-dH-meJ" id="J9Y-p2-LgC"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Share" id="NCc-Yu-lyd">
                             <connections>
                                 <action selector="shareButtonPressed:" destination="dQx-dH-meJ" id="eye-z5-OIM"/>

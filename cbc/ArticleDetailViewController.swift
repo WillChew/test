@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FBSDKShareKit
 
 class ArticleDetailViewController: UIViewController {
     
@@ -30,6 +31,21 @@ class ArticleDetailViewController: UIViewController {
        
     }
     
+    func shareOnFacebook() {
+        let contentShare = ShareLinkContent()
+        guard let passedURL = passedURL else { return }
+        contentShare.contentURL = URL.init(string: passedURL)!
+        contentShare.quote = "Check out this article!"
+        ShareDialog(fromViewController: self, content: contentShare, delegate: self as? SharingDelegate).show()
+    
+    }
+    
+   
+    
+    @IBAction func dimissButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     @IBAction func shareButtonPressed(_ sender: Any) {
         
@@ -48,7 +64,9 @@ class ArticleDetailViewController: UIViewController {
         }
         
         let fbOption = UIAlertAction(title: "Facebook", style: .default) { _ in
-            print("Sharing \(self.passedURL) via facebook")
+            
+            
+            self.shareOnFacebook()
         }
         
         let cancelOption = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
